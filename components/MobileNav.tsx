@@ -9,8 +9,9 @@ import {
 } from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
 import { MenuIcon } from "lucide-react";
+import { menuItems } from "./SiteHeader";
 
-const mobileItems = ["A", "B", "C"];
+// const mobileItems = ["A", "B", "C"];
 
 const MobileNav = () => {
   const [open, setOpen] = useState(false);
@@ -31,9 +32,9 @@ const MobileNav = () => {
         </Button>
       </SheetTrigger>
       <SheetContent side={"left"}>
-        <SheetTitle className="hidden">Menu</SheetTitle>
+          <SheetTitle className="hidden">Menu</SheetTitle>
         <div className="flex flex-col items-start">
-          {mobileItems.map((item, index) => (
+          {menuItems.map((item, index) => (
             <Button
               key={index}
               variant={"link"}

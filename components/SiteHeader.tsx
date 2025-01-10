@@ -2,6 +2,8 @@ import React from 'react'
 import MainNav from '@/components/MainNav';
 import MobileNav from '@/components/MobileNav';
 
+export const menuItems = ["A", "B", "C"];
+
 const SiteHeader = () => {
   return (
     <header className='w-full border-b'>
