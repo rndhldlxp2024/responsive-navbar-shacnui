@@ -10,10 +10,13 @@ import {
 import { Button } from "@/components/ui/button";
 import { MenuIcon } from "lucide-react";
 import { menuItems } from "./SiteHeader";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 // const mobileItems = ["A", "B", "C"];
 
 const MobileNav = () => {
+  const pathname = usePathname();
   const [open, setOpen] = useState(false);
   return (
     <Sheet
@@ -31,18 +34,33 @@ const MobileNav = () => {
           <MenuIcon />
         </Button>
       </SheetTrigger>
-      <SheetContent side={"left"}>
-          <SheetTitle className="hidden">Menu</SheetTitle>
+      <SheetContent
+        side={"left"}
+        className="sm:w-[300px] w-[250px] px-0"
+      >
+        <SheetTitle className="hidden">Menu</SheetTitle>
         <div className="flex flex-col items-start">
-          {menuItems.map((item, index) => (
-            <Button
-              key={index}
-              variant={"link"}
-              onClick={() => setOpen(false)}
-            >
-              {item}
-            </Button>
-          ))}
+          {menuItems.map((item, index) => {
+            const isActive = pathname === item.href;
+            return (
+              <Button
+                key={index}
+                variant={"link"}
+                onClick={() => setOpen(false)}
+                asChild
+                className="w-full"
+              >
+                <Link
+                  href={item.href}
+                  className={`${
+                    isActive ? "link_active" : ""
+                  } hover:link_active hover:no-underline hover:bg-gray-100 dark:hover:bg-gray-800`}
+                >
+                  {item.label}
+                </Link>
+              </Button>
+            );
+          })}
         </div>
       </SheetContent>
     </Sheet>
